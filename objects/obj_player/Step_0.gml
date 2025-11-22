@@ -2,6 +2,7 @@
 key_right = keyboard_check(ord("D"));
 key_left  = keyboard_check(ord("A"));
 key_jump  = keyboard_check_pressed(vk_space);
+key_shoot = keyboard_check_pressed(ord("J")); //atira
 #endregion
 
 #region movimentacao
@@ -46,6 +47,24 @@ y += vspd;
 
 
 #region sistema de tiro
+var flipped = direction;
+var gun_x = (x+64) * (flipped)
+var _xx = x + lengthdir_x(15,image_angle)
+var y_offset = lengthdir_y(-20,image_angle)
 
+if key_shoot and global.bullets > 0
+{
+	audio_play_sound(scar,1,0)
+	with (instance_create_layer(_xx,y+10,"Shoot",obj_shoot))
+{
+global.bullets --;
+//velocidade do tiro
+speed = 10;
+// direcao
+direction = -90 + 90 * other.image_xscale;
+//angulo
+image_angle = direction;
+}
+}
 #endregion
 
