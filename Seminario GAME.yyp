@@ -1,0 +1,49 @@
+{
+  "$GMProject":"v1",
+  "%Name":"Seminario GAME",
+  "AudioGroups":[
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+  "configs":{
+    "children":[],
+    "name":"Default",
+  },
+  "defaultScriptType":1,
+  "Folders":[
+    {"$GMFolder":"","%Name":"objetos","folderPath":"folders/objetos.yy","name":"objetos","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"roms","folderPath":"folders/roms.yy","name":"roms","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"som","folderPath":"folders/som.yy","name":"som","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Sprite","folderPath":"folders/Sprite.yy","name":"Sprite","resourceType":"GMFolder","resourceVersion":"2.0",},
+  ],
+  "ForcedPrefabProjectReferences":[],
+  "IncludedFiles":[],
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2024.14.1.210",
+  },
+  "name":"Seminario GAME",
+  "resources":[
+    {"id":{"name":"obj_bullet","path":"objects/obj_bullet/obj_bullet.yy",},},
+    {"id":{"name":"Obj_camera","path":"objects/Obj_camera/Obj_camera.yy",},},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
+    {"id":{"name":"obj_shoot","path":"objects/obj_shoot/obj_shoot.yy",},},
+    {"id":{"name":"Obj_wall","path":"objects/Obj_wall/Obj_wall.yy",},},
+    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"scar","path":"sounds/scar/scar.yy",},},
+    {"id":{"name":"city","path":"sprites/city/city.yy",},},
+    {"id":{"name":"spr_player_idle","path":"sprites/spr_player_idle/spr_player_idle.yy",},},
+    {"id":{"name":"spr_player_shoot","path":"sprites/spr_player_shoot/spr_player_shoot.yy",},},
+    {"id":{"name":"spr_shoot","path":"sprites/spr_shoot/spr_shoot.yy",},},
+    {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},},
+  ],
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
+    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+  ],
+  "templateType":"game",
+  "TextureGroups":[
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+}
