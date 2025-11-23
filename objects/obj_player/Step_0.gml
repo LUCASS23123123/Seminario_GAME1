@@ -68,3 +68,45 @@ image_angle = direction;
 }
 #endregion
 
+#region Troca os sprites
+
+if (!place_meeting(x, y + 1, Obj_wall))
+{
+    sprite_index = spr_player_jumpInicial;
+
+    if (sign(vspd) > 0.5)
+        sprite_index = spr_player_fall;
+    else
+        sprite_index = spr_player_jumpInicial;
+}
+else
+{
+    if (hspd != 0)
+    {
+        sprite_index = spr_player_running;
+    }
+
+    if (hspd == 0)
+    {
+        if (place_meeting(x, y + 1, Obj_wall))
+        {
+            sprite_index = spr_player_idle;
+        }
+
+        if (hspd != 0)
+        {
+            if (place_meeting(x, y + 1, Obj_wall))
+            {
+                sprite_index = spr_player_running;
+            }
+        }
+    }
+}
+
+#endregion
+
+#region resrat jogo
+if global.life < 1 {
+	game_restart();
+}
+#endregion
