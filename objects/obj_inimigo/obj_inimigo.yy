@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_inimigo",
-    "path":"sprites/spr_inimigo/spr_inimigo.yy",
+    "name":"Spr_zombie_idle",
+    "path":"sprites/Spr_zombie_idle/Spr_zombie_idle.yy",
   },
   "spriteMaskId":null,
   "visible":true,
