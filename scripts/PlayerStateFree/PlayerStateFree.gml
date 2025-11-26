@@ -3,6 +3,13 @@ function PlayerStateFree(){
 script_execute(get_input())
 #region movimentacao
 var move = key_right - key_left;
+var _colisao = [layer_tilemap_get_id("Tile_Asfalto")];
+
+// se eu cair eu colido
+if (vspd >= 0)
+{
+	array_push(_colisao, layer_tilemap_get_id("Tiles_passar"));
+}
 
 hspd = move * spd;
 
@@ -13,15 +20,15 @@ vspd += grv;
 if (hspd != 0) image_xscale = sign(hspd);
 
 // pulo
-if (key_jump && place_meeting(x, y + 1, Obj_wall))
+if (key_jump && place_meeting(x, y + 1, _colisao))
 {
     vspd = -8;
 }
 
 // colisão horizontal
-if place_meeting(x + hspd, y, Obj_wall)
+if place_meeting(x + hspd, y, _colisao)
 {
-    while (!place_meeting(x + sign(hspd), y, Obj_wall))
+    while (!place_meeting(x + sign(hspd), y, _colisao))
     {
         x += sign(hspd);
     }
@@ -30,9 +37,9 @@ if place_meeting(x + hspd, y, Obj_wall)
 x += hspd;
 
 // colisão vertical
-if place_meeting(x, y + vspd, Obj_wall)
+if place_meeting(x, y + vspd, _colisao)
 {
-    while (!place_meeting(x, y + sign(vspd), Obj_wall))
+    while (!place_meeting(x, y + sign(vspd), _colisao))
     {
         y += sign(vspd);
     }
@@ -83,7 +90,7 @@ if (key_shoot && global.bullets > 0)
 
 #region Troca os sprites
 
-if (!place_meeting(x, y + 1, Obj_wall))
+if (!place_meeting(x, y + 1, _colisao))
 {
     sprite_index = spr_player_jumpInicial;
 
@@ -101,14 +108,14 @@ else
 
     if (hspd == 0)
     {
-        if (place_meeting(x, y + 1, Obj_wall))
+        if (place_meeting(x, y + 1, _colisao))
         {
             sprite_index = spr_player_idle;
         }
 
         if (hspd != 0)
         {
-            if (place_meeting(x, y + 1, Obj_wall))
+            if (place_meeting(x, y + 1, _colisao))
             {
                 sprite_index = spr_player_running;
             }
