@@ -2,7 +2,7 @@ function PlayerStateFree() {
     script_execute(get_input);
 
     // --------------------------------------
-    // Função interna para checar colisão
+    // FUNÇÃO DE COLISÃO
     // --------------------------------------
     function TileCollision(_x, _y, _list) {
         for (var i = 0; i < array_length(_list); i++) {
@@ -13,18 +13,17 @@ function PlayerStateFree() {
         return false;
     }
 
-    // --------------------------------------
-    // MOVIMENTAÇÃO
-    // --------------------------------------
-    var move = key_right - key_left;
-
-    var _colisao = [
-        layer_tilemap_get_id("Tile_Asfalto")
-    ];
+    // LISTA DE COLISÃO
+    var _colisao = [ layer_tilemap_get_id("Tile_Asfalto") ];
 
     if (vspd >= 0) {
         array_push(_colisao, layer_tilemap_get_id("Tiles_passar"));
     }
+
+    // --------------------------------------
+    // MOVIMENTAÇÃO
+    // --------------------------------------
+    var move = key_right - key_left;
 
     hspd = move * spd;
     vspd += grv;
@@ -60,32 +59,41 @@ function PlayerStateFree() {
     }
 
     // --------------------------------------
-    // SISTEMA DE TIRO
+    // SISTEMA DE TIRO (CORRIGIDO)
     // --------------------------------------
-    var flip = (image_xscale == -1);
-    var offset_x = 0;
-    var offset_y = -280;
 
-    if (flip) offset_x = -offset_x;
+    // --- OFFSETS DO TIRO ---
+    var offset_x = 40;    // distancia horizontal da mão
+    var offset_y = -20;   // distancia vertical do ombro
 
-    var gun_x = x + lengthdir_x(offset_x, image_angle);
-    var gun_y = y + lengthdir_y(offset_y, image_angle);
+    // se virar para esquerda
+    if (image_xscale == -1) {
+        offset_x = -offset_x;
+    }
 
+    // posição real para spawn
+    var gun_x = x + offset_x;
+    var gun_y = y + offset_y;
+
+    // --- ATIRAR ---
     if (key_shoot && global.bullets > 0) {
+
         audio_play_sound(scar, 1, 0);
 
         with (instance_create_layer(gun_x, gun_y, "Shoot", obj_shoot)) {
             global.bullets--;
-            speed = 100;
-            direction = -90 + 90 * other.image_xscale;
-            image_angle = direction;
+
+            // direção dependendo do lado
+            direction = (other.image_xscale == 1) ? 0 : 180;
+            speed = 14;
         }
 
-        shoot_timer = 12; /// ATIVA O SPRITE DE TIRO POR 12 FRAMES
+        // duração da animação de tiro
+        other.shoot_timer = 12;
     }
 
     // --------------------------------------
-    // SPRITE DE TIRO (PRIORITÁRIO)
+    // ANIMAÇÃO DO TIRO (PRIORIDADE MÁXIMA)
     // --------------------------------------
     if (shoot_timer > 0) {
         shoot_timer--;
@@ -93,13 +101,14 @@ function PlayerStateFree() {
         sprite_index = spr_player_shoot;
         image_speed = 1;
 
-        exit; // impede que outra animação sobrescreva
+        exit;
     }
 
     // --------------------------------------
-    // TROCA DE SPRITES NORMAL
+    // ANIMAÇÕES NORMAIS DO PLAYER
     // --------------------------------------
     if (!TileCollision(x, y + 1, _colisao)) {
+
         sprite_index = spr_player_jumpInicial;
 
         if (vspd > 0.5)
