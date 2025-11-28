@@ -1,0 +1,10 @@
+draw_clear(c_black);
+draw_set_color(c_white);
+draw_text(50, 50, "CRÉDITOS");
+draw_text(50, 100, "Lucas Campos - Programação");
+draw_text(50, 130, "João Silva - Arte");
+draw_text(50, 160, "Maria Souza - Música");
+draw_text(50, 200, "Bibliotecas utilizadas:");
+draw_text(50, 230, "GameMaker Studio 2");
+draw_text(50, 260, "Biblioteca XYZ");
+draw_text(50, 500, "Clique para voltar ao Menu");
