@@ -96,51 +96,58 @@ if (vspd >= 0) { // só ativa quando está caindo/descendo
         y += _velv;
     }
 
-    // --------------------------------------
-    // SISTEMA DE TIRO (CORRIGIDO)
-    // --------------------------------------
+   // --------------------------------------
+// SISTEMA DE TIRO (CORRIGIDO E FINAL)
+// --------------------------------------
 
-    // --- OFFSETS DO TIRO ---
-    var offset_x = 40;    // distancia horizontal da mão
-    var offset_y = -20;   // distancia vertical do ombro
+// --- OFFSETS DO TIRO ---
+var offset_x = 40;    // distancia horizontal da mão
+var offset_y = -20;   // distancia vertical do ombro
 
-    // se virar para esquerda
-    if (image_xscale == -1) {
-        offset_x = -offset_x;
+// se virar para esquerda
+if (image_xscale == -1) {
+    offset_x = -offset_x;
+}
+
+// posição real para spawn
+var gun_x = x + offset_x;
+var gun_y = y + offset_y;
+
+// --- ATIRAR ---
+if (key_shoot && global.bullets > 0) {
+
+    // EFEITO SONORO DO TIRO (respeita SFX ON/OFF + volume)
+    if (global.sfx_on) {
+        var snd = audio_play_sound(scar, 1, false);
+        audio_sound_gain(snd, global.sfx_volume, 0);
     }
 
-    // posição real para spawn
-    var gun_x = x + offset_x;
-    var gun_y = y + offset_y;
+    // Cria a bala
+    var bullet = instance_create_layer(gun_x, gun_y, "Shoot", obj_shoot);
 
-    // --- ATIRAR ---
-    if (key_shoot && global.bullets > 0) {
+    // Contabiliza tiro
+    global.bullets--;
 
-        audio_play_sound(scar, 1, 0);
+    // direção dependendo do lado
+    bullet.direction = (image_xscale == 1) ? 0 : 180;
+    bullet.speed = 14;
 
-        with (instance_create_layer(gun_x, gun_y, "Shoot", obj_shoot)) {
-            global.bullets--;
+    // duração da animação de tiro
+    shoot_timer = 12;
+}
 
-            // direção dependendo do lado
-            direction = (other.image_xscale == 1) ? 0 : 180;
-            speed = 14;
-        }
+// --------------------------------------
+// ANIMAÇÃO DO TIRO (PRIORIDADE MÁXIMA)
+// --------------------------------------
+if (shoot_timer > 0) {
+    shoot_timer--;
 
-        // duração da animação de tiro
-        other.shoot_timer = 12;
-    }
+    sprite_index = spr_player_shoot;
+    image_speed = 1;
 
-    // --------------------------------------
-    // ANIMAÇÃO DO TIRO (PRIORIDADE MÁXIMA)
-    // --------------------------------------
-    if (shoot_timer > 0) {
-        shoot_timer--;
+    exit;
+}
 
-        sprite_index = spr_player_shoot;
-        image_speed = 1;
-
-        exit;
-    }
 
     // --------------------------------------
     // ANIMAÇÕES NORMAIS DO PLAYER

@@ -2,10 +2,10 @@ draw_clear(c_black);
 draw_set_halign(fa_center);
 
 // Logo
-draw_text(room_width/2, 100, "MEU JOGO");
+draw_text(room_width/2, 100, "ZUMBLS");
 
 // Botões
-var btn_texts = ["Início", "Configurações", "Créditos", "Sair"];
+var btn_texts = ["Inicio", "Configuracoes", "Creditos", "Sair"];
 for (var i = 0; i < 4; i++) {
     var bx = btn_x - btn_width/2;
     var by = btn_y_start + i * btn_spacing;

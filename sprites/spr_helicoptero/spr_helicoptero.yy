@@ -1,9 +1,9 @@
 {
   "$GMSprite":"v2",
   "%Name":"spr_helicoptero",
-  "bboxMode":0,
-  "bbox_bottom":54,
-  "bbox_left":0,
+  "bboxMode":2,
+  "bbox_bottom":57,
+  "bbox_left":91,
   "bbox_right":138,
   "bbox_top":0,
   "collisionKind":1,

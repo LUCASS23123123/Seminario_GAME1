@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"Chase___M_sica_de_A__o_e_Aventura___USO_LIVRE___M_sica_para_Criadores_de_Conte_do___TgMI_dnqV38_",
+  "%Name":"musicaJogo",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,9 +10,9 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":128.68498,
+  "duration":48695.773,
   "exportDir":"",
-  "name":"Chase___M_sica_de_A__o_e_Aventura___USO_LIVRE___M_sica_para_Criadores_de_Conte_do___TgMI_dnqV38_",
+  "name":"musicaJogo",
   "parent":{
     "name":"som",
     "path":"folders/som.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"Chase___M_sica_de_A__o_e_Aventura___USO_LIVRE___M_sica_para_Criadores_de_Conte_do___TgMI_dnqV38_.mp3",
+  "soundFile":"musicaJogo.mp3",
   "volume":1.0,
 }
