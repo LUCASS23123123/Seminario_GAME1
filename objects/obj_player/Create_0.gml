@@ -15,3 +15,8 @@ enum PlayerState {
 FREE,
 FREEZE
 }
+// Inicializar controles mobile
+global.touch_right = false;
+global.touch_left  = false;
+global.touch_jump  = false;
+global.touch_shoot = false;
