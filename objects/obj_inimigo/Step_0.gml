@@ -25,6 +25,13 @@ var dist = point_distance(x, y, player.x, player.y);
 ///                        ESTADO: DEAD
 /// ====================================================================
 if (state == "dead") {
+
+    // --- ativa invulnerabilidade ---
+    death_invulnerable = true;
+
+    // --- conta os 5 frames da morte ---
+    death_timer++;
+
     sprite_index = Spr_zombie_dead;
     image_speed = 0.25;
 
@@ -37,6 +44,7 @@ if (state == "dead") {
 
     exit; 
 }
+
 
 
 // ====================================================================
@@ -79,13 +87,13 @@ if (state == "idle") {
 if (state == "patrol") {
 
     sprite_index = Spr_zombie_walk;
-    image_speed = 0.30;
+    image_speed = 1;
 
     x += hspd;
 
     // virar quando bater na parede ou sem chão
-    var parede = tile_solid(x + hspd * 4, y);
-    var sem_chao = tile_empty(x + hspd * 4, y + 8);
+    var parede = tile_solid(x + hspd , y);
+    var sem_chao = tile_empty(x + hspd , y );
 
     if (parede || sem_chao) {
         hspd = -hspd;
@@ -93,7 +101,7 @@ if (state == "patrol") {
     }
 
     // player perto → perseguir
-    if (dist < 250) {
+    if (dist < 200) {
         state = "chase";
     }
 

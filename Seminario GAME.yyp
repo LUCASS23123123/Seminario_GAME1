@@ -27,6 +27,7 @@
   "name":"Seminario GAME",
   "resources":[
     {"id":{"name":"Obj_camera","path":"objects/Obj_camera/Obj_camera.yy",},},
+    {"id":{"name":"obj_helicoptero","path":"objects/obj_helicoptero/obj_helicoptero.yy",},},
     {"id":{"name":"obj_hud","path":"objects/obj_hud/obj_hud.yy",},},
     {"id":{"name":"obj_inimigo","path":"objects/obj_inimigo/obj_inimigo.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
@@ -38,7 +39,10 @@
     {"id":{"name":"PlayerStateFree","path":"scripts/PlayerStateFree/PlayerStateFree.yy",},},
     {"id":{"name":"PlayerStateFreeze","path":"scripts/PlayerStateFreeze/PlayerStateFreeze.yy",},},
     {"id":{"name":"scar","path":"sounds/scar/scar.yy",},},
+    {"id":{"name":"vertBg1","path":"sounds/vertBg1/vertBg1.yy",},},
+    {"id":{"name":"Background","path":"sprites/Background/Background.yy",},},
     {"id":{"name":"city","path":"sprites/city/city.yy",},},
+    {"id":{"name":"spr_helicoptero","path":"sprites/spr_helicoptero/spr_helicoptero.yy",},},
     {"id":{"name":"spr_inimigo","path":"sprites/spr_inimigo/spr_inimigo.yy",},},
     {"id":{"name":"spr_life","path":"sprites/spr_life/spr_life.yy",},},
     {"id":{"name":"Spr_lixo","path":"sprites/Spr_lixo/Spr_lixo.yy",},},

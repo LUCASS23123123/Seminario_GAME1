@@ -37,14 +37,52 @@ function PlayerStateFree() {
     // --------------------------------------
     // COLISÃO HORIZONTAL
     // --------------------------------------
-    var _velh = sign(hspd);
-    repeat(abs(hspd)) {
-        if (TileCollision(x + _velh, y, _colisao)) {
+  // --------------------------------------
+// COLISÃO HORIZONTAL + SUBIR RAMPAS
+// --------------------------------------
+var _velh = sign(hspd);
+repeat(abs(hspd)) {
+
+    // colisão direto na frente → tentar subir rampa
+    if (TileCollision(x + _velh, y, _colisao)) {
+
+        var subiu = false;
+
+        // tenta subir até 4 pixels (ajuste fino)
+        for (var i = 1; i <= 16; i++) {
+
+            if (!TileCollision(x + _velh, y - i, _colisao)) {
+                y -= i;   // sobe
+                x += _velh; // avança
+                subiu = true;
+                break;
+            }
+        }
+
+        // se mesmo tentando subir não conseguiu → bloco sólido
+        if (!subiu) {
             hspd = 0;
             break;
         }
+
+    } else {
+        // movimento normal sem colisão
         x += _velh;
     }
+}
+// --------------------------------------
+// DESCIDA SUAVE DE RAMPAS
+// --------------------------------------
+if (vspd >= 0) { // só ativa quando está caindo/descendo
+    for (var i = 1; i <= 4; i++) {
+        // verifica se pode descer só um pixel
+        if (!TileCollision(x, y + 1, _colisao)) {
+            y += 1; // desce suavemente
+        } else {
+            break; // encontrou chão
+        }
+    }
+}
 
     // --------------------------------------
     // COLISÃO VERTICAL
