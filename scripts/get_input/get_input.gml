@@ -1,50 +1,43 @@
 /// get_input()
 
-// --------------------------------------
-// RESET DAS ENTRADAS
-// --------------------------------------
+// Reset
 key_left  = 0;
 key_right = 0;
 key_jump  = 0;
 key_shoot = 0;
 
-// --------------------------------------
-// ENTRADAS DE TECLADO (PC)
-// --------------------------------------
-if (os_type != os_android && os_type != os_ios) {
-    key_left  = keyboard_check(ord("A"));
-    key_right = keyboard_check(ord("D"));
-    key_jump  = keyboard_check_pressed(vk_space);
-    key_shoot = keyboard_check_pressed(ord("J"));
+// Tamanho real da GUI
+var gui_w = display_get_gui_width();
+var gui_h = display_get_gui_height();
+
+// Mouse/toque convertido para a GUI
+var mx = device_mouse_x_to_gui(0);
+var my = device_mouse_y_to_gui(0);
+
+var pressed       = device_mouse_check_button(0, mb_left);
+var just_pressed  = device_mouse_check_button_pressed(0, mb_left);
+
+
+// ==============================
+// HITBOXES MOBILE
+// ==============================
+
+// ESQUERDA
+if (point_in_rectangle(mx, my, 60, gui_h - 180, 180, gui_h - 60)) {
+    if (pressed) key_left = 1;
 }
 
-// --------------------------------------
-// ENTRADAS DE TOQUE (MOBILE)
-// --------------------------------------
-if (os_type == os_android || os_type == os_ios) {
+// DIREITA
+if (point_in_rectangle(mx, my, 200, gui_h - 180, 320, gui_h - 60)) {
+    if (pressed) key_right = 1;
+}
 
-    var mx = device_mouse_x(0);
-    var my = device_mouse_y(0);
-    var pressed = device_mouse_check_button(0, mb_left);
-    var just_pressed = device_mouse_check_button_pressed(0, mb_left);
+// PULAR
+if (point_in_rectangle(mx, my, gui_w - 320, gui_h - 180, gui_w - 200, gui_h - 60)) {
+    if (just_pressed) key_jump = 1;
+}
 
-    // BOTÃO: ANDAR ESQUERDA
-    if (point_in_rectangle(mx, my, 20, room_height - 180, 140, room_height - 60)) {
-        if (pressed) key_left = 1;
-    }
-
-    // BOTÃO: ANDAR DIREITA
-    if (point_in_rectangle(mx, my, 160, room_height - 180, 280, room_height - 60)) {
-        if (pressed) key_right = 1;
-    }
-
-    // BOTÃO: PULAR
-    if (point_in_rectangle(mx, my, room_width - 280, room_height - 180, room_width - 160, room_height - 60)) {
-        if (just_pressed) key_jump = 1;
-    }
-
-    // BOTÃO: ATIRAR
-    if (point_in_rectangle(mx, my, room_width - 140, room_height - 180, room_width - 20, room_height - 60)) {
-        if (just_pressed) key_shoot = 1;
-    }
+// ATIRAR
+if (point_in_rectangle(mx, my, gui_w - 180, gui_h - 180, gui_w - 60, gui_h - 60)) {
+    if (just_pressed) key_shoot = 1;
 }

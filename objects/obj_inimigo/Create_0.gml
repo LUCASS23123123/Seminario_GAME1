@@ -3,6 +3,7 @@ hp = 3;
 
 walk_speed = 1;
 chase_speed = 1;
+vspd = 0;
 hspd = walk_speed;
 
 state = "idle"; // idle, patrol, chase, attack, hurt, dead

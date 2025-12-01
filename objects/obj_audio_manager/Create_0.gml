@@ -1,3 +1,30 @@
+/// Evento Create do obj_audio_manager
+
+// --- Inicializa as variáveis de som ---
+// O comando !variable_global_exists garante que a gente não
+// reinicie o volume se mudar de sala (caso o objeto seja persistente)
+
+if (!variable_global_exists("vol_music")) {
+    global.vol_music = 1; // Volume da música (0 a 1)
+}
+
+if (!variable_global_exists("vol_sfx")) {
+    global.vol_sfx = 1;   // Volume dos efeitos (0 a 1)
+}
+
+if (!variable_global_exists("fullscreen")) {
+    global.fullscreen = window_get_fullscreen();
+}
+
+// Inicia a música de fundo (exemplo)
+// if (!audio_is_playing(snd_music_bg)) {
+//     audio_play_sound(snd_music_bg, 100, true);
+// }
+
+
+
+
+
 // Garantir variáveis globais
 if (!variable_global_exists("music_on")) global.music_on = true;
 if (!variable_global_exists("sfx_on")) global.sfx_on = true;

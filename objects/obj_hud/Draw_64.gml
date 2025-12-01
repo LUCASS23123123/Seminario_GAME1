@@ -1,24 +1,66 @@
-if global.life =  4
-draw_sprite(spr_life,4,100,62)
-if global.life =  3
-draw_sprite(spr_life,3,100,62)
-if global.life =  2
-draw_sprite(spr_life,2,100,62)
-if global.life =  1
-draw_sprite(spr_life,1,100,62)
-if global.life =  0
-draw_sprite(spr_life,0,100,62)
-if (os_type == os_android || os_type == os_ios) {
+/// Evento Draw GUI
 
-    // esquerda
-    draw_sprite(Spr_direction_left, 0, 80, room_height - 120);
+// --- TRAVA DE SEGURANÇA (Evita erros de variável) ---
+if (!variable_global_exists("life")) global.life = 8;
+if (!variable_global_exists("bullets")) global.bullets = 12;
+if (!variable_global_exists("bullets_max")) global.bullets_max = 30;
 
-    // direita
-    draw_sprite(Spr_direction_right, 0, 220, room_height - 120);
 
-    // pular
-    draw_sprite(Spr_dpad_element_south, 0, room_width - 220, room_height - 120);
+// =========================================================
+// 1. BARRA DE VIDA (Canto Superior Esquerdo)
+// =========================================================
+draw_sprite(spr_life, max(0, global.life), 20, 20);
 
-    // atirar
-    draw_sprite(Spr_button_atirar, 0, room_width - 80, room_height - 120);
-}
+
+// =========================================================
+// 2. MUNIÇÃO (Abaixo da Vida)
+// =========================================================
+// Ícone da bala
+draw_sprite(spr_icone_bullet, 0, 20, 60);
+
+// Texto da bala
+draw_set_color(c_yellow);
+// Desenhado no X=70 para não ficar em cima do ícone
+draw_text(70, 60, string(global.bullets) + " / " + string(global.bullets_max));
+draw_set_color(c_white);
+
+
+// =========================================================
+// 3. CONTADOR DE RESGATES (Canto Superior Direito)
+// =========================================================
+draw_set_color(c_lime); // Verde para destacar
+draw_set_halign(fa_right); // Alinha o texto pela direita
+
+// Pega a largura da tela para colar no canto direito
+var _largura_tela = display_get_gui_width();
+
+// Desenha: "Resgates: 0 / 1"
+draw_text(_largura_tela - 20, 20, "Resgates: " + string(global.resgatados) + " / " + string(global.total_necessario));
+
+// Resetar alinhamento e cor (Muito importante!)
+draw_set_halign(fa_left);
+draw_set_color(c_white);
+
+
+/// DRAW GUI
+
+var gui_w = display_get_gui_width();
+var gui_h = display_get_gui_height();
+
+
+/// DRAW GUI
+
+var gui_w = display_get_gui_width();
+var gui_h = display_get_gui_height();
+
+// BOTÃO ESQUERDA
+draw_sprite(Spr_direction_left, 0, 120, gui_h - 120);
+
+// BOTÃO DIREITA
+draw_sprite(Spr_direction_right, 0, 260, gui_h - 120);
+
+// BOTÃO PULAR
+draw_sprite(Spr_dpad_element_south, 0, gui_w - 260, gui_h - 120);
+
+// BOTÃO ATIRAR
+draw_sprite(Spr_button_atirar, 0, gui_w - 120, gui_h - 120);

@@ -1,13 +1,11 @@
-btn_x = room_width / 2;
-btn_y_music = 200;
-btn_y_sfx = 250;
-btn_y_vol = 300;
-btn_y_back = 380;
-btn_width = 200;
-btn_height = 40;
+/// Evento Create
 
-// Garantir variáveis globais
-if (!variable_global_exists("music_on")) global.music_on = true;
-if (!variable_global_exists("sfx_on")) global.sfx_on = true;
-if (!variable_global_exists("music_volume")) global.music_volume = 1;
-if (!variable_global_exists("sfx_volume")) global.sfx_volume = 1;
+// --- 1. Inicializa Variáveis Globais (Se não existirem) ---
+// Usamos 'global' para que o jogo todo saiba o volume
+if (!variable_global_exists("vol_music"))  global.vol_music = 1; // 0 a 1
+if (!variable_global_exists("vol_sfx"))    global.vol_sfx = 1;
+if (!variable_global_exists("fullscreen")) global.fullscreen = window_get_fullscreen();
+
+// --- 2. Variáveis de Controle do Menu ---
+// Variável para saber qual slider estamos arrastando agora (-1 = nenhum)
+dragging_slider = -1;

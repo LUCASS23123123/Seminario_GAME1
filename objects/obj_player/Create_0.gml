@@ -6,8 +6,8 @@ shoot_timer = 0;
 shoot_frame = 3; // frame exato onde o tiro sai (ajuste)
 shot_fired = false; // garante que só atira UMA vez por animação
 
-global.bullets = 3000;
-global.life = 4;
+global.bullets = 5;
+global.life = 8;
 image_speed = 0.4;
 
 state = PlayerState.FREE;
